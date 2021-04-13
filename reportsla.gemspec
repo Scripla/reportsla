@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "lib/reportsla/version"
-require_relative "lib/reports/base"
+require_relative "lib/reportsla/base"
 
 Gem::Specification.new do |spec|
   spec.name          = "reportsla"

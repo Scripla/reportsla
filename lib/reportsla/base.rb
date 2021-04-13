@@ -4,7 +4,7 @@
 # @Last Modified time: 2021-02-04 10:27:44
 
 # A module to hold all report definitions
-module Reports
+module Reportsla
   include Registerable
   # extend self
 
