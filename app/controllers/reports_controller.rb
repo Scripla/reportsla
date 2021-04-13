@@ -14,7 +14,7 @@ class ReportsController < ApplicationController
 
   def show
     if can? :show, params[:report].to_sym
-      report = "Reports::#{params[:report].camelize}".constantize.new(current_user, @start_date, @end_date, {params: params})
+      @report ||= "Reports::#{params[:report].camelize}".constantize.new(current_user, @start_date, @end_date, {params: params})
       @category = report.class.category
       @title, @headers, @formats, @results, @chart = report.get
       @page_title = "#{@category} - #{@title} #{report.needs_dates? ? "for #{l(@start_date)} to #{l(@end_date)}" : ''}"
