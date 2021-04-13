@@ -19,14 +19,14 @@ module Registerable
     # Registers the class in the +section+ of the application level variable.
     def register_class(klass, section, options={})
       # [ {thing: [one, two, three], other: [four, five, six]}]
-      array = Reportsla.configuration.registers[section.to_sym]
+      array = Reportsla.configure.registers[section.to_sym]
       array = [] if array.nil?
       array << {klass: klass.name, options: options} if !array.include?({klass: klass.name, options: options})
-      Reportsla.configuration.registers[section] = array
+      Reportsla.configure.registers[section] = array
     end
     # Returns class names registered in that +section+
     def regestered_classes(section)
-      Reportsla.configuration.registers[section].map{|c| c[:klass]}
+      Reportsla.configure.registers[section].map{|c| c[:klass]}
     end
   end
 

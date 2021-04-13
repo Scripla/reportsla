@@ -8,7 +8,7 @@ module Reportsla
   class Error < StandardError; end
 
   class << self
-    attr_accessor :configuration
+    attr_accessor :configure
   end
 
   def self.configure
@@ -21,7 +21,6 @@ module Reportsla
     def initialize
       @registers = {}
     end
-
   end
   # Your code goes here...
 
