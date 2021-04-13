@@ -1,0 +1,12 @@
+<% size ||= 4 %>
+<% offset ||= 0 %>
+
+<%= card category, size: size, offset: offset do %>
+  <div class="center">
+  <ul>
+    <% for report in Reports.by_category(category) %>
+      <%= link_to report[:options][:name], report[:options][:url] %><br/>
+    <% end %>
+  </ul>
+  </div>
+<% end %>

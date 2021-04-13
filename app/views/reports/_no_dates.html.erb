@@ -1,0 +1,8 @@
+<%= row do %>
+  <%= well "Report Controls", collapse: true do %>
+    <%= row do %>
+      <%= render partial: 'reports_category', locals: {category: @category, size: 6, offset: 3} %>
+    <% end %>
+    <div class="clear"></div>
+  <% end %>
+<% end %>
