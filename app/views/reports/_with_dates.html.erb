@@ -18,7 +18,7 @@
 
 <%= row do %>
   <%= col size: 12, sm: {size: 6}, lg: {size: 4, offset: 2} do %>
-    <%= card 'Quick Dates', class: 'text-center' do %>
+    <%= report_card 'Quick Dates', class: 'text-center' do %>
       <%= row do %>
         <%= col size: 12, sm: {size: 6}, md: {size: 6}, class: 'text-center' do %>
           <%= link_to 'Last 30 Days', start_date: Date.today - 30.days, end_date: Date.today %><br/>
@@ -35,7 +35,7 @@
     <% end %>
   <% end %>
   <%= col size: 12, sm: {size: 6}, lg: {size: 4} do %>
-    <%= card 'Related Reports' do %>
+    <%= report_card 'Related Reports' do %>
       <% for report in Reports.by_category(@category) %>
         <%= report_link_to report[:options][:symbol], report[:options][:name], report[:options][:url] %><br/>
       <% end %>

@@ -1,7 +1,7 @@
 <% size ||= 4 %>
 <% offset ||= 0 %>
 
-<%= card category, size: size, offset: offset do %>
+<%= report_card category, size: size, offset: offset do %>
   <div class="center">
   <ul>
     <% for report in Reports.by_category(category) %>
