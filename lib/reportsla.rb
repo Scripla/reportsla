@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require_relative "reportsla/version"
-require_relative "reportsla/base"
-require_relative "reportsla/test"
+require_relative "registerable"
+require_relative "reports/base"
 
 module Reportsla
   class Error < StandardError; end
