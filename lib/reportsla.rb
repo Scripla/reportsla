@@ -2,6 +2,7 @@
 
 require_relative "reportsla/version"
 require_relative "reportsla/base"
+require_relative "reportsla/test"
 
 module Reportsla
   class Error < StandardError; end
