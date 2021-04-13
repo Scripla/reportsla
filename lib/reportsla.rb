@@ -3,6 +3,7 @@
 require_relative "reportsla/version"
 require_relative "registerable"
 require_relative "reports/base"
+require_relative "reportsla/engine"
 
 module Reportsla
   class Error < StandardError; end
@@ -10,7 +11,7 @@ module Reportsla
   class << self
     attr_accessor :configuration
   end
-  
+
   def self.configuration
     @configuration ||= Configuration.new
   end
