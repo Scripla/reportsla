@@ -19,7 +19,6 @@ class ReportsController < ApplicationController
       @title, @headers, @formats, @results, @chart = @report.get
       @page_title = "#{@category} - #{@title} #{@report.needs_dates? ? "for #{l(@start_date)} to #{l(@end_date)}" : ''}"
       @needs_dates = @report.needs_dates?
-      @source_of_sale = @results.select { |result| result[0].is_a? Hash}
       respond_to do |format|
         format.html {
           render "#{params[:viewer]}_viewer"
