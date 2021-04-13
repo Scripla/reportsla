@@ -15,10 +15,10 @@ class ReportsController < ApplicationController
   def show
     if can? :show, params[:report].to_sym
       @report ||= "Reports::#{params[:report].camelize}".constantize.new(current_user, @start_date, @end_date, {params: params})
-      @category = report.class.category
-      @title, @headers, @formats, @results, @chart = report.get
-      @page_title = "#{@category} - #{@title} #{report.needs_dates? ? "for #{l(@start_date)} to #{l(@end_date)}" : ''}"
-      @needs_dates = report.needs_dates?
+      @category = @report.class.category
+      @title, @headers, @formats, @results, @chart = @report.get
+      @page_title = "#{@category} - #{@title} #{@report.needs_dates? ? "for #{l(@start_date)} to #{l(@end_date)}" : ''}"
+      @needs_dates = @report.needs_dates?
       @source_of_sale = @results.select { |result| result[0].is_a? Hash}
       respond_to do |format|
         format.html {
@@ -35,7 +35,7 @@ class ReportsController < ApplicationController
       end
     else
       flash[:danger] = "You may not view this report (#{params[:report]})"
-      redirect_to library_path
+      redirect_to "/"
     end
   end
 
