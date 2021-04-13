@@ -15,7 +15,7 @@ module Reports
   # Returns reports in a category
   def self.by_category(category)
     result = []
-    for report in Reportsla.config.registers[:reports]
+    for report in Reportsla.configuration.registers[:reports]
       result << report if report[:options][:category] == category
     end
     result
