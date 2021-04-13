@@ -13,7 +13,7 @@ module Reportsla
 
   def self.configure
     self.configuration ||= Configuration.new
-    yield(configuration)
+    yield(self.configuration)
   end
 
   class Configuration
