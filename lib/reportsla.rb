@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "reportsla/version"
-require_relative "reportsla/reports/base"
+require File.dirname(__FILE__) + '/reports/base.rb'
 
 module Reportsla
   class Error < StandardError; end
