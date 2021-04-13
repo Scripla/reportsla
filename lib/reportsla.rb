@@ -8,7 +8,7 @@ module Reportsla
   class Error < StandardError; end
 
   class << self
-    attr_accessor :configure
+    attr_accessor :configuration
   end
 
   def self.configure
