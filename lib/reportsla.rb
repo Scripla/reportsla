@@ -10,10 +10,17 @@ module Reportsla
   class << self
     attr_accessor :configuration
   end
+  
+  def self.configuration
+    @configuration ||= Configuration.new
+  end
+
+  def self.reset
+    @configuration = Configuration.new
+  end
 
   def self.configure
-    configuration ||= Configuration.new
-    # yield(configuration)
+    yield(configuration)
   end
 
   class Configuration
