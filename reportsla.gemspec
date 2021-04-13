@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "Reporting gem from coursla"
   spec.description   = "Gem to create reports"
-  spec.homepage      = ["scripla.com", "coursla.com"]
+  spec.homepage      = "https://scripla.com"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
   # Specify which files should be added to the gem when it is released.
