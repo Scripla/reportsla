@@ -27,11 +27,11 @@ module Reports
     attr_accessor :current_user
 
 
-    def initialize(current_user, start_date=Date.today - 31.days, end_date=Date.today, current_client = nil, options={})
+    def initialize(current_user, start_date=Date.today - 31.days, end_date=Date.today, options={})
       @start_date = start_date
       @end_date = end_date + 1.days
       @current_user = current_user
-      @client = current_client
+      @options = options
       @params = options[:params]
     end
 
@@ -76,34 +76,6 @@ module Reports
       Reports.register_class(klass, :reports, {url: url, category: self.category, symbol: symbol, name: title})
     end
 private
-    def get_users
-      users = []
-      if current_user.super_admin?
-        users = User.all
-      elsif current_user.provider? or current_user.facility_admin?
-        users = current_user.patients
-      end
-      users
-    end
-    def get_providers
-      providers =[]
-      if current_user.super_admin?
-        providers = Provider.all
-      elsif current_user.provider?
-        providers = [current_user]
-      elsif current_user.facility_admin?
-        providers = current_user.providers
-      end
-      providers
-    end
-    def get_facilities
-      facilities = []
-      if current_user.super_admin?
-        facilities = Facility.all
-      elsif current_user.provider? or current_user.facility_admin?
-        facilities = current_user.facilities
-      end
-    end
     def line_chart(title, label_column, data_columns=[], series_labels=[])
       result = []
       y = 0
