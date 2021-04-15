@@ -3,7 +3,7 @@
   <% if @chart %>
   <%= row class: 'mb-4' do %>
     <%= col size: 12 do %>
-      <%= report_card @chart[:title], pad: false, size: 6, offset: 3 do %>
+      <%= report_card @chart[:title], pad: false, size: 6, offset: 3, class: "d-none d-md-block" do %>
           <canvas id='theChart' width="400" height="200"></canvas>
       <% end %>
     <% end %>
