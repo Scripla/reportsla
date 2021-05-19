@@ -13,4 +13,16 @@ module ReportsHelper
     to_return += '</div>'
     to_return.html_safe
   end
+
+  def report_link_to(report, title, url)
+    link_to title, url if can? :show, report
+  end
+
+  def report_align(format)
+    return 'right' if %w[money integer].include? format.downcase
+    return 'left' if format.downcase == 'string'
+
+    return 'center'
+  end
+
 end
