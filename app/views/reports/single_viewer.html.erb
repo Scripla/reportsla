@@ -1,30 +1,24 @@
 <%= render partial: 'report_bar' %>
-<div class="p-0 p-lg-4">
-  <% if @chart %>
+<% if @chart %>
   <%= row class: 'mb-4' do %>
     <%= col size: 12 do %>
       <%= report_card @chart[:title], pad: false, size: 6, offset: 3 do %>
-          <canvas id='theChart' width="400" height="200"></canvas>
+        <canvas id='theChart' width="400" height="200"></canvas>
       <% end %>
     <% end %>
   <% end %>
 <% end %>
 <%= row do %>
   <%= col size: 12 do %>
-    <%= report_card @title, pad: false, size: 6, offset: 3, class: "d-none d-md-block" do %>
-        <%= render partial: 'reports/table' %>
-      <% end %>
+    <%= report_card @title, pad: false, size: 6, offset: 3 do %>
+      <%= render partial: 'reports/table' %>
     <% end %>
   <% end %>
+<% end %>
 <% if @chart %>
-<script type="text/javascript">
+  <script type="text/javascript">
     var theChart = document.getElementById('theChart').getContext('2d');
     var data = $.parseJSON('<%= @chart[:data].html_safe %>');
     var myChart = new Chart(theChart, {type: '<%= @chart[:type] %>', data: data, options: {} });
-
-
-
-
   </script>
 <% end %>
-</div>
