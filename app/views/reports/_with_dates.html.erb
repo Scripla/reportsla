@@ -1,0 +1,75 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <span id='go' class='btn btn-success proportional float-right mt-2'>Submit</span>
+  <%= link_to 'Download', {format: :csv}, class: 'btn btn-warning float-right mr-4 mt-2 proportional' %>
+  <div style='clear: both;' class="mb-5"></div>
+  <%= row do %>
+    <%= col size: 12, md: {size: 3}, class: 'mb-3' do %>
+      <label for="end_date" class="span6">Related Reports</label>
+      <%= dropdown_card 'Related Reports' do %>
+        <% for report in Reports.by_category(@category) %>
+          <%= report_link_to report[:options][:symbol], report[:options][:name], report[:options][:url], class: 'dropdown-item' %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <%= col size: 12, md: {size: 3} do %>
+      <label for="start_date" class="span6">Start Date</label>
+      <%= text_field_tag :start_date, @start_date, class: 'date datepicker1  form-control',pattern: "\d{2}-\d{2}-\d{4}" %>
+    <% end %>
+    <%= col size: 12, md: {size: 3} do %>
+      <label for="end_date" class="span6">End Date</label>
+      <%= text_field_tag :end_date, @end_date, class: 'span6 date datepicker1  form-control' %>
+    <% end %>
+    <%= col size: 12, md: {size: 3} do %>
+      <label for="end_date" class="span6">Quick Dates</label>
+      <%= dropdown_card 'Quick Dates' do %>
+        <%= link_to 'Last 30 Days', {start_date: Date.today - 30.days, end_date: Date.today}, class: 'dropdown-item' %>
+        <%= link_to 'Last 90 Days', {start_date: Date.today - 90.days, end_date: Date.today}, class: 'dropdown-item'%>
+        <%= link_to 'Last 180 Days', {start_date: Date.today - 180.days, end_date: Date.today}, class: 'dropdown-item' %>
+        <%= link_to 'This Month', {start_date: Date.today.beginning_of_month, end_date: Date.today}, class: 'dropdown-item' %>
+        <%= link_to 'Last Month', {start_date: Date.today.beginning_of_month - 1.month, end_date: Date.today.beginning_of_month}, class: 'dropdown-item' %>
+        <%= link_to 'This Year', {start_date: Date.today.beginning_of_year, end_date: Date.today}, class: 'dropdown-item' %>
+        <%= link_to 'Last Year', {start_date: Date.today.beginning_of_year - 1.year, end_date: Date.today.beginning_of_year}, class: 'dropdown-item' %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <div style='clear: both;'></div>
+
+<script>
+
+/*
+ * queryParameters -> handles the query string parameters
+ * queryString -> the query string without the fist '?' character
+ * re -> the regular expression
+ * m -> holds the string matching the regular expression
+ */
+var queryParameters = {}, queryString = location.search.substring(1),
+    re = /([^&=]+)=([^&]*)/g, m;
+
+// Creates a map with the query string parameters
+while (m = re.exec(queryString)) {
+    queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+}
+
+// Add new parameters or update existing ones
+
+
+/*
+ * Replace the query portion of the URL.
+ * jQuery.param() -> create a serialized representation of an array or
+ *     object, suitable for use in a URL query string or Ajax request.
+ */
+
+$('#go').click(function(event) {
+  //alert('test');
+  start = $("#start_date").val();
+  end = $("#end_date").val();
+  queryParameters['start_date'] = start;
+  queryParameters['end_date'] = end;
+  go = window.location +"?" + $.param(queryParameters);
+//window.location.href = go;
+location.search = $.param(queryParameters);
+return false;
+  //window.location = window.location +"?" + $.param(queryParameters));
+});
+
+</script>

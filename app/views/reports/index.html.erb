@@ -1,0 +1,10 @@
+
+<div class="p-0">
+  <div style='margin-top: 20px;'>
+    <%= row do %>
+      <%= col size: 4, offset: 4, class: 'mb-4' do %>
+        <%= render partial: 'reports_category', locals: {category: params[:category]} %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

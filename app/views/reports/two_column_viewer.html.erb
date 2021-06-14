@@ -1,0 +1,23 @@
+<%= render partial: 'report_bar' %>
+<%= row do %>
+  <%= col size: 6, md: {size: @chart ? 6 : 12 } do %>
+    <%= report_card @title do %>
+      <%= render partial: 'reports/table' %>
+    <% end %>
+  <% end %>
+  <% if @chart %>
+    <%= col size: 6, md: {size: 6} do %>
+      <%= report_card @chart[:title], pad: false, size: 6 do %>
+        <canvas id='theChart' width="400" height="400"></canvas>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+<% if @chart %>
+  <script type="text/javascript">
+    var theChart = document.getElementById('theChart').getContext('2d');
+    var data = $.parseJSON('<%= @chart[:data].html_safe %>');
+    var myChart = new Chart(theChart, {type: '<%= @chart[:type] %>', data: data, options: {} });
+  </script>
+<% end %>
+<div class="mt-4 mb-4"></div>
